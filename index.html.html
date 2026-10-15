@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Majestic Inn | Luxury & Budget Stay in MIDC Digdoh, Nagpur</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0b132b',
+              dark: '#1c2541',
+              accent: '#d4af37',
+              gold: '#e6c86e',
+              amber: '#f59e0b',
+              maroon: '#6e1a24',
+              teal: '#0a434c'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Cinzel"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom glow and smooth gradients reflecting hotel's signature cove lighting */
+    .cove-glow {
+      box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.25);
+    }
+    .neon-bed-glow {
+      box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.35);
+    }
+    .hero-bg {
+      background: linear-gradient(135deg, rgba(11, 19, 43, 0.94) 0%, rgba(28, 37, 65, 0.88) 100%),
+                  radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.2) 0%, transparent 60%);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #d4af37;
+      border-radius: 9999px;
+    }
+    @keyframes slideDownToast {
+      from { transform: translate(-50%, -100%); opacity: 0; }
+      to { transform: translate(-50%, 0); opacity: 1; }
+    }
+    .toast-animate {
+      animation: slideDownToast 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-accent selection:text-brand-navy">
+
+  <!-- IN-APP TOAST NOTIFICATION CONTAINER (Replaces alerts) -->
+  <div id="toastNotification" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 hidden transition-all duration-300">
+    <div class="bg-brand-navy text-white border border-brand-accent/50 px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs sm:text-sm font-medium">
+      <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+      <span id="toastMessage">Action completed successfully</span>
+    </div>
+  </div>
+
+  <!-- CLIENT SAMPLE PITCH BAR -->
+  <div class="bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 text-brand-navy px-4 py-2 border-b border-amber-300/40 text-xs font-semibold">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="bg-brand-navy text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+          Client Sample Demo
+        </span>
+        <span class="font-bold text-brand-navy">
+          Prepared for Management of Hotel Majestic Inn (Digdoh, Nagpur)
+        </span>
+      </div>
+      <div class="flex items-center gap-2 ml-auto">
+        <button onclick="openPitchModal()" class="bg-brand-navy/90 hover:bg-brand-navy text-brand-gold px-3 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+          <i class="fa-solid fa-lightbulb text-amber-300"></i>
+          <span>Why Direct Website? (ROI)</span>
+        </button>
+        <button onclick="copySampleLink()" class="bg-white/90 hover:bg-white text-slate-900 px-3 py-1 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+          <i class="fa-solid fa-share-nodes text-brand-navy"></i>
+          <span>Copy Share Link</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP ANNOUNCEMENT & CONTACT BAR -->
+  <header class="bg-brand-navy border-b border-slate-800 text-xs text-slate-300 py-2.5 px-4 sm:px-8">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center space-x-4">
+        <span class="flex items-center text-brand-gold">
+          <i class="fa-solid fa-location-dot mr-1.5 text-brand-accent"></i>
+          MIDC / Digdoh, Hingna Road, Nagpur, MH
+        </span>
+        <span class="hidden md:inline-block text-slate-600">|</span>
+        <span class="hidden md:inline-flex items-center text-slate-300">
+          <i class="fa-solid fa-clock mr-1.5 text-brand-accent"></i> 24x7 Front Desk & Check-in
+        </span>
+      </div>
+      <div class="flex items-center space-x-5 ml-auto">
+        <a href="tel:+919876543210" class="hover:text-brand-gold transition-colors flex items-center gap-1 font-medium">
+          <i class="fa-solid fa-phone text-xs text-brand-gold"></i> +91 91580 00000
+        </a>
+        <div class="inline-flex items-center bg-brand-dark/90 px-2.5 py-0.5 rounded-full border border-brand-accent/30 text-[11px] text-amber-300">
+          <i class="fa-solid fa-star text-amber-400 mr-1 text-[10px]"></i> 3.9/5 (Google Verified)
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-navy via-brand-dark to-slate-900 flex items-center justify-center text-brand-gold shadow-md group-hover:scale-105 transition-transform duration-300 border border-brand-accent/40">
+            <i class="fa-solid fa-hotel text-2xl"></i>
+          </div>
+          <div>
+            <div class="font-display font-bold text-xl sm:text-2xl tracking-wide text-brand-navy uppercase leading-tight">
+              Hotel Majestic <span class="text-brand-accent">Inn</span>
+            </div>
+            <div class="text-[11px] font-semibold tracking-widest text-slate-500 uppercase flex items-center gap-1">
+              <span>होटल मैजेस्टिक इन</span>
+              <span class="text-brand-accent">•</span>
+              <span>Nagpur MIDC</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-700">
+          <a href="#home" class="hover:text-brand-accent transition-colors">Home</a>
+          <a href="#about" class="hover:text-brand-accent transition-colors">About</a>
+          <a href="#rooms" class="hover:text-brand-accent transition-colors">Rooms & Rates</a>
+          <a href="#amenities" class="hover:text-brand-accent transition-colors">Amenities</a>
+          <a href="#gallery" class="hover:text-brand-accent transition-colors">Gallery</a>
+          <a href="#location" class="hover:text-brand-accent transition-colors">Location</a>
+          <a href="#reviews" class="hover:text-brand-accent transition-colors">Reviews</a>
+        </div>
+
+        <!-- Action CTA -->
+        <div class="hidden sm:flex items-center gap-3">
+          <button onclick="openBookingModal('Deluxe AC Room', 1310)" class="bg-gradient-to-r from-brand-navy to-brand-dark text-brand-gold border border-brand-accent/50 px-5 py-2.5 rounded-xl font-semibold text-sm hover:shadow-lg hover:shadow-brand-accent/10 hover:border-brand-gold transition duration-200 flex items-center gap-2">
+            <i class="fa-solid fa-calendar-check text-xs"></i>
+            <span>Book from ₹1,310</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="lg:hidden flex items-center">
+          <button id="mobileMenuBtn" aria-label="Toggle Navigation" class="text-slate-800 p-2 rounded-lg hover:bg-slate-100">
+            <i class="fa-solid fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-slate-200 px-6 pt-3 pb-6 space-y-3">
+      <a href="#home" class="block font-medium py-1.5 text-slate-700 hover:text-brand-accent">Home</a>
+      <a href="#about" class="block font-medium py-1.5 text-slate-700 hover:text-brand-accent">About Hotel</a>
+      <a href="#rooms" class="block font-medium py-1.5 text-slate-700 hover:text-brand-accent">Rooms & Pricing</a>
+      <a href="#amenities" class="block font-medium py-1.5 text-slate-700 hover:text-brand-accent">Amenities</a>
+      <a href="#gallery" class="block font-medium py-1.5 text-slate-700 hover:text-brand-accent">Photo Gallery</a>
+      <a href="#location" class="block font-medium py-1.5 text-slate-700 hover:text-brand-accent">Location & Directions</a>
+      <a href="#reviews" class="block font-medium py-1.5 text-slate-700 hover:text-brand-accent">Guest Reviews</a>
+      <div class="pt-3 border-t border-slate-100 flex flex-col gap-2">
+        <button onclick="openBookingModal('Deluxe AC Room', 1310)" class="w-full bg-brand-navy text-brand-gold py-3 rounded-xl font-bold text-center">
+          Reserve Room (From ₹1,310)
+        </button>
+        <a href="tel:+919158000000" class="w-full text-center border border-slate-300 py-2.5 rounded-xl font-medium text-slate-700">
+          <i class="fa-solid fa-phone mr-2 text-brand-accent"></i> Call Front Desk
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="relative hero-bg text-white pt-16 pb-28 sm:py-24 overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 opacity-20 pointer-events-none">
+      <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-amber-500 blur-3xl"></div>
+      <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-blue-600 blur-3xl"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Hero Text -->
+        <div class="lg:col-span-7 space-y-6 text-left">
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-xs sm:text-sm font-medium text-amber-300">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            Rooms Available for Tonight in MIDC Nagpur
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight tracking-tight">
+            Comfort, Style & Convenience in <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-gold to-yellow-100">MIDC Nagpur</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-300 max-w-2xl font-light leading-relaxed">
+            Welcome to <strong class="text-white font-semibold">Hotel Majestic Inn</strong> on Hingna Road. Experience spotless air-conditioned rooms with modern ambient cove lighting, dedicated headboards, free Wi-Fi, 24-hour reception, and hassle-free parking.
+          </p>
+
+          <!-- Badges Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-3 text-center backdrop-blur-sm">
+              <div class="text-amber-400 font-bold text-lg sm:text-xl">₹1,310<span class="text-xs font-normal text-slate-300">/nt</span></div>
+              <div class="text-[11px] text-slate-300 uppercase tracking-wider mt-0.5">Best Online Rate</div>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-3 text-center backdrop-blur-sm">
+              <div class="text-emerald-400 font-bold text-lg sm:text-xl"><i class="fa-solid fa-wifi"></i> Free</div>
+              <div class="text-[11px] text-slate-300 uppercase tracking-wider mt-0.5">High Speed Wi-Fi</div>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-3 text-center backdrop-blur-sm">
+              <div class="text-blue-400 font-bold text-lg sm:text-xl"><i class="fa-solid fa-square-parking"></i> Yes</div>
+              <div class="text-[11px] text-slate-300 uppercase tracking-wider mt-0.5">Dedicated Parking</div>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-3 text-center backdrop-blur-sm">
+              <div class="text-rose-400 font-bold text-lg sm:text-xl"><i class="fa-solid fa-snowflake"></i> 100%</div>
+              <div class="text-[11px] text-slate-300 uppercase tracking-wider mt-0.5">Fully AC Rooms</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual / Real Preview Simulation Card -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative bg-slate-900/80 rounded-3xl p-3.5 border border-white/15 shadow-2xl backdrop-blur-md neon-bed-glow">
+            
+            <!-- Room Image Showcase matching photo vibe -->
+            <div class="relative h-72 sm:h-80 w-full rounded-2xl overflow-hidden group">
+              <img 
+                src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=900&q=80" 
+                alt="Hotel Majestic Inn Executive Room with Ambient Ceiling" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=900&q=80';"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+              <!-- Live Badge -->
+              <div class="absolute top-3 left-3 bg-brand-navy/90 backdrop-blur-md px-3 py-1 rounded-full border border-amber-400/40 text-[11px] text-amber-300 font-bold flex items-center gap-1.5 shadow-md">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>Verified Property Photos</span>
+              </div>
+
+              <!-- Overlay Tag -->
+              <div class="absolute bottom-3 left-3 right-3 bg-brand-navy/90 backdrop-blur-md p-3 rounded-xl border border-amber-400/30 text-xs text-white flex items-center justify-between">
+                <div>
+                  <h4 class="font-bold text-brand-gold text-sm">Executive AC Room</h4>
+                  <p class="text-[11px] text-slate-300">Ambient warm cove lighting, velvet headboard & TV</p>
+                </div>
+                <button onclick="openBookingModal('Executive Double Room', 1699)" class="bg-amber-500 hover:bg-amber-600 text-brand-navy px-3 py-1.5 rounded-lg font-bold text-xs transition">
+                  Book ₹1,699
+                </button>
+              </div>
+            </div>
+
+            <!-- Fast Quick-look Footer -->
+            <div class="pt-3 px-2 flex items-center justify-between text-xs">
+              <span class="text-slate-300 flex items-center gap-1.5">
+                <i class="fa-solid fa-shield-halved text-emerald-400"></i> Sanitized & Verified Clean
+              </span>
+              <a href="#gallery" class="text-brand-gold hover:underline font-medium">Browse All 16+ Photos &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK BOOKING SEARCH BAR -->
+  <section class="relative z-30 -mt-10 sm:-mt-14 max-w-6xl mx-auto px-4">
+    <div class="bg-white rounded-2xl shadow-xl border border-slate-200/80 p-4 sm:p-6 cove-glow">
+      <form id="heroBookingForm" onsubmit="handleQuickSearch(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
+        
+        <!-- Check-in -->
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
+            <i class="fa-regular fa-calendar-days text-brand-accent mr-1"></i> Check-In Date
+          </label>
+          <input type="date" id="heroCheckIn" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:bg-white transition">
+        </div>
+
+        <!-- Check-out -->
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
+            <i class="fa-regular fa-calendar-check text-brand-accent mr-1"></i> Check-Out Date
+          </label>
+          <input type="date" id="heroCheckOut" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:bg-white transition">
+        </div>
+
+        <!-- Guests -->
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
+            <i class="fa-solid fa-user-group text-brand-accent mr-1"></i> Guests & Rooms
+          </label>
+          <select id="heroGuests" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:bg-white transition">
+            <option value="1 Guest, 1 Room">1 Guest, 1 Room</option>
+            <option value="2 Guests, 1 Room" selected>2 Guests, 1 Room</option>
+            <option value="3 Guests, 1 Room">3 Guests, 1 Room</option>
+            <option value="4+ Guests, Family Room">4+ Guests, Family Suite</option>
+          </select>
+        </div>
+
+        <!-- Room Preference -->
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">
+            <i class="fa-solid fa-bed text-brand-accent mr-1"></i> Category
+          </label>
+          <select id="heroRoomType" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:bg-white transition">
+            <option value="Deluxe AC Room">Deluxe AC (₹1,310)</option>
+            <option value="Executive Double Room">Executive Room (₹1,699)</option>
+            <option value="Family Suite">Family Suite (₹2,199)</option>
+          </select>
+        </div>
+
+        <!-- Search CTA -->
+        <div>
+          <button type="submit" class="w-full bg-brand-navy hover:bg-slate-900 text-brand-gold font-bold py-3 px-4 rounded-xl shadow-md transition-all duration-200 flex items-center justify-center gap-2 border border-brand-accent/40 hover:shadow-lg">
+            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+            <span>Check Rates</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- ABOUT & LOCATION ADVANTAGE SECTION -->
+  <section id="about" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        
+        <!-- Left: Image collage / Visual representation -->
+        <div class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-md h-52 bg-slate-900 relative">
+              <!-- Room 1 SVG Mockup with Blue Lighting -->
+              <svg class="w-full h-full object-cover" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="300" height="200" fill="#0f172a"/>
+                <path d="M 20,20 L 280,20 L 240,60 L 60,60 Z" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+                <ellipse cx="150" cy="40" rx="90" ry="12" fill="#60a5fa" opacity="0.6"/>
+                <rect x="80" y="70" width="140" height="90" rx="6" fill="#581c87"/>
+                <rect x="60" y="110" width="180" height="70" rx="6" fill="#f8fafc"/>
+                <rect x="60" y="145" width="180" height="25" fill="#1e40af"/>
+              </svg>
+              <span class="absolute bottom-2 left-2 bg-black/70 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded font-medium">Ambient Blue LED</span>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-md h-52 bg-slate-900 relative">
+              <!-- Room 2 SVG Mockup with Velvet Wall Design -->
+              <svg class="w-full h-full object-cover" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <rect width="300" height="200" fill="#1e1b4b"/>
+                <rect x="90" y="30" width="120" height="110" rx="6" fill="#881337"/>
+                <line x1="130" y1="30" x2="130" y2="140" stroke="#be123c" stroke-width="2"/>
+                <line x1="170" y1="30" x2="170" y2="140" stroke="#be123c" stroke-width="2"/>
+                <rect x="60" y="90" width="180" height="90" rx="6" fill="#f1f5f9"/>
+                <circle cx="70" cy="65" r="8" fill="#f59e0b"/>
+                <circle cx="230" cy="65" r="8" fill="#f59e0b"/>
+              </svg>
+              <span class="absolute bottom-2 left-2 bg-black/70 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded font-medium">Maroon Velvet Headboard</span>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-slate-900 to-brand-navy rounded-2xl p-5 text-white flex items-center justify-between border border-brand-accent/30 shadow-lg">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl bg-amber-400/20 text-brand-gold flex items-center justify-center text-xl">
+                <i class="fa-solid fa-industry"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-sm sm:text-base">Prime MIDC Industrial Location</h4>
+                <p class="text-xs text-slate-300">Fast access to Hingna Road factories, IT parks & transit</p>
+              </div>
+            </div>
+            <span class="text-brand-accent font-display text-xl font-bold">24 Hrs</span>
+          </div>
+        </div>
+
+        <!-- Right: Story & Details -->
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 text-brand-accent text-xs font-bold tracking-widest uppercase">
+            <i class="fa-solid fa-crown text-xs"></i>
+            About Hotel Majestic Inn
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-brand-navy leading-tight">
+            Your Comfort Sanctuary in Nagpur's Industrial & Educational Hub
+          </h2>
+
+          <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+            Conveniently situated in <strong class="text-slate-800">MIDC / Digdoh on Hingna Road</strong>, Hotel Majestic Inn is tailored for corporate visitors, industrial executives, and travelers looking for clean, contemporary, and budget-friendly hospitality in Nagpur.
+          </p>
+
+          <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+            Each of our rooms features bespoke interior ceiling cove lighting with warm amber and cooling LED tones, custom upholstered velvet backdrops, glass tables, flat-screen entertainment, and hygienic attached washrooms with modern geysers.
+          </p>
+
+          <!-- Key Points Grid -->
+          <div class="grid grid-cols-2 gap-4 pt-2">
+            <div class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fa-solid fa-check text-xs"></i>
+              </div>
+              <div>
+                <h5 class="text-xs font-bold text-slate-800 uppercase">24/7 Front Desk</h5>
+                <p class="text-xs text-slate-500">Smooth late night & early check-in assistance</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fa-solid fa-check text-xs"></i>
+              </div>
+              <div>
+                <h5 class="text-xs font-bold text-slate-800 uppercase">Dedicated Parking</h5>
+                <p class="text-xs text-slate-500">Secure on-site car and two-wheeler parking</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fa-solid fa-check text-xs"></i>
+              </div>
+              <div>
+                <h5 class="text-xs font-bold text-slate-800 uppercase">High-Speed Wi-Fi</h5>
+                <p class="text-xs text-slate-500">Seamless work-from-hotel internet connectivity</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fa-solid fa-check text-xs"></i>
+              </div>
+              <div>
+                <h5 class="text-xs font-bold text-slate-800 uppercase">Direct Booking Perks</h5>
+                <p class="text-xs text-slate-500">Guaranteed lowest rate from ₹1,310 / night</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-2 flex flex-wrap items-center gap-4">
+            <a href="#rooms" class="inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-dark text-white text-sm font-semibold px-6 py-3 rounded-xl transition shadow">
+              <span>View All Rooms</span>
+              <i class="fa-solid fa-arrow-right text-xs text-brand-gold"></i>
+            </a>
+            <a href="tel:+919158000000" class="inline-flex items-center gap-2 text-slate-700 hover:text-brand-navy text-sm font-semibold px-4 py-3 rounded-xl border border-slate-300 transition">
+              <i class="fa-solid fa-phone text-brand-accent"></i>
+              <span>Direct Inquiry: +91 91580 00000</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOMS & RATES SECTION -->
+  <section id="rooms" class="py-20 bg-slate-100/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-brand-accent text-xs font-bold tracking-widest uppercase inline-block mb-2">Accommodations</span>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-brand-navy mb-4">
+          Thoughtfully Designed Rooms for Every Guest
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          All rooms are fully air-conditioned, featuring modern ambient cove ceiling lighting, premium plush bedding, and spotless private bathrooms.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- ROOM 1: Deluxe AC Room (₹1,310 - As per Screenshot) -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="relative h-60 bg-slate-900 overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=700&q=80" 
+              alt="Deluxe AC Room" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.onerror=null; this.src='https://placehold.co/700x450/1e293b/d4af37?text=Deluxe+AC+Room';"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
+            <div class="absolute top-3 right-3 bg-brand-navy/90 backdrop-blur-md text-amber-300 px-3 py-1 rounded-full text-xs font-bold border border-amber-400/30">
+              Starts at ₹1,310
+            </div>
+            <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-xs font-medium">
+              <i class="fa-solid fa-user mr-1 text-slate-300"></i> Up to 2 Guests
+            </div>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-display font-bold text-xl text-brand-navy">Deluxe AC Room</h3>
+                <div class="text-right">
+                  <span class="text-2xl font-bold text-brand-navy">₹1,310</span>
+                  <span class="text-xs text-slate-500 block">/ night + taxes</span>
+                </div>
+              </div>
+              <p class="text-slate-600 text-xs sm:text-sm mb-4 leading-relaxed">
+                Cozy, well-appointed room featuring ambient LED ceiling cove lights, comfortable double bed, and work-ready desk.
+              </p>
+
+              <!-- Feature Tags -->
+              <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 mb-6">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-snowflake text-sky-500"></i> Split AC</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-wifi text-emerald-500"></i> Free Wi-Fi</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-tv text-purple-500"></i> Flat TV</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-shower text-blue-500"></i> Hot Geyser</span>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 flex items-center gap-3">
+              <button onclick="openBookingModal('Deluxe AC Room', 1310)" class="w-full bg-brand-navy hover:bg-slate-900 text-brand-gold py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition">
+                Book This Room
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROOM 2: Executive Double Room (Maroon Backboard & Living Sofa) -->
+        <div class="bg-white rounded-3xl overflow-hidden border-2 border-brand-accent/40 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col group relative">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-brand-accent text-brand-navy font-bold text-[11px] uppercase tracking-wider px-4 py-0.5 rounded-full z-10 shadow-sm">
+            Most Recommended
+          </div>
+
+          <div class="relative h-60 bg-slate-900 overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=700&q=80" 
+              alt="Executive Double Room" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.onerror=null; this.src='https://placehold.co/700x450/1e293b/d4af37?text=Executive+Double';"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-xs font-medium">
+              <i class="fa-solid fa-couch mr-1 text-slate-300"></i> Sofa & Glass Table
+            </div>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between bg-gradient-to-b from-amber-50/30 to-white">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-display font-bold text-xl text-brand-navy">Executive Double</h3>
+                <div class="text-right">
+                  <span class="text-2xl font-bold text-brand-navy">₹1,699</span>
+                  <span class="text-xs text-slate-500 block">/ night + taxes</span>
+                </div>
+              </div>
+              <p class="text-slate-600 text-xs sm:text-sm mb-4 leading-relaxed">
+                Spacious room with plush velvet back wall, living sofa area, glass tea table, and enhanced ambient warm lighting.
+              </p>
+
+              <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 mb-6">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-couch text-amber-500"></i> Velvet Sofa Seating</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-mug-hot text-amber-600"></i> 24h Room Service</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-wifi text-emerald-500"></i> High Speed Wi-Fi</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-bell-concierge text-blue-500"></i> Express Check-in</span>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 flex items-center gap-3">
+              <button onclick="openBookingModal('Executive Double Room', 1699)" class="w-full bg-gradient-to-r from-brand-navy to-brand-dark hover:from-black hover:to-slate-800 text-brand-gold py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition shadow-md">
+                Book Executive Room
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROOM 3: Family Suite -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="relative h-60 bg-slate-900 overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=700&q=80" 
+              alt="Family Suite" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.onerror=null; this.src='https://placehold.co/700x450/1e293b/d4af37?text=Family+Suite';"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white px-2.5 py-1 rounded-lg text-xs font-medium">
+              <i class="fa-solid fa-users mr-1 text-slate-300"></i> 3 - 4 Family Members
+            </div>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-display font-bold text-xl text-brand-navy">Family Suite</h3>
+                <div class="text-right">
+                  <span class="text-2xl font-bold text-brand-navy">₹2,199</span>
+                  <span class="text-xs text-slate-500 block">/ night + taxes</span>
+                </div>
+              </div>
+              <p class="text-slate-600 text-xs sm:text-sm mb-4 leading-relaxed">
+                Extra-large bedroom layout with dual king arrangement option, generous floor plan, and attached spacious bathroom.
+              </p>
+
+              <div class="grid grid-cols-2 gap-2 text-xs text-slate-600 mb-6">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-expand text-indigo-500"></i> Extra Large Area</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield text-emerald-500"></i> Soundproofed</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-bath text-sky-500"></i> Geyser & Toiletries</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-car text-amber-500"></i> Reserved Parking</span>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 flex items-center gap-3">
+              <button onclick="openBookingModal('Family Suite', 2199)" class="w-full bg-brand-navy hover:bg-slate-900 text-brand-gold py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition">
+                Book Family Suite
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Price Transparency Footnote -->
+      <div class="mt-8 bg-amber-50 border border-amber-200/80 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-amber-900">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-circle-info text-amber-600 text-base"></i>
+          <span><strong>Best Rate Guarantee:</strong> Online OTA rates (Hotels.com, Expedia) starting at ₹1,310. Book directly through this portal for guaranteed room confirmation.</span>
+        </div>
+        <div class="font-bold text-amber-800 whitespace-nowrap">Standard Check-in: 12:00 PM | Check-out: 11:00 AM</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AMENITIES & FACILITIES -->
+  <section id="amenities" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-brand-accent text-xs font-bold tracking-widest uppercase inline-block mb-2">Hospitality & Comfort</span>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-brand-navy mb-4">
+          Everything You Need for a Seamless Stay
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          From business executives visiting Hingna MIDC factories to patients & families visiting nearby medical centers, we provide thoughtful services.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-brand-accent/50 hover:bg-amber-50/20 transition-all duration-200 group">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-snowflake"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1 text-sm sm:text-base">Powerful AC</h4>
+          <p class="text-xs text-slate-500">Individual split climate control in every guest room</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-brand-accent/50 hover:bg-amber-50/20 transition-all duration-200 group">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-square-parking"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1 text-sm sm:text-base">On-Site Parking</h4>
+          <p class="text-xs text-slate-500">Spacious secure back parking space for cars & bikes</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-brand-accent/50 hover:bg-amber-50/20 transition-all duration-200 group">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-wifi"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1 text-sm sm:text-base">Free High-Speed Wi-Fi</h4>
+          <p class="text-xs text-slate-500">Fast wireless internet access in all guest rooms & lobby</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-brand-accent/50 hover:bg-amber-50/20 transition-all duration-200 group">
+          <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-shower"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1 text-sm sm:text-base">Hot Water Geysers</h4>
+          <p class="text-xs text-slate-500">Instant electric water heaters installed in every bathroom</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-brand-accent/50 hover:bg-amber-50/20 transition-all duration-200 group">
+          <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1 text-sm sm:text-base">24-Hour Reception</h4>
+          <p class="text-xs text-slate-500">Round the clock front desk desk staff ready to assist you</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-brand-accent/50 hover:bg-amber-50/20 transition-all duration-200 group">
+          <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-tv"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1 text-sm sm:text-base">Flat Screen TV</h4>
+          <p class="text-xs text-slate-500">Wall-mounted HD televisions with satellite channels</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-brand-accent/50 hover:bg-amber-50/20 transition-all duration-200 group">
+          <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-broom"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1 text-sm sm:text-base">Daily Housekeeping</h4>
+          <p class="text-xs text-slate-500">Fresh clean bed linens, pillows, and sanitized rooms</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-brand-accent/50 hover:bg-amber-50/20 transition-all duration-200 group">
+          <div class="w-12 h-12 rounded-xl bg-yellow-100 text-yellow-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <h4 class="font-bold text-slate-800 mb-1 text-sm sm:text-base">Power Backup</h4>
+          <p class="text-xs text-slate-500">Continuous lighting & essential backup for your stay</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE PHOTO GALLERY (Accurate to real screenshots) -->
+  <section id="gallery" class="py-20 bg-slate-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+        <div>
+          <span class="text-brand-gold text-xs font-bold tracking-widest uppercase inline-block mb-2">Visual Tour</span>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-white">
+            Photo Gallery & Ambience
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1">
+            Real guest snapshots showing our cove ceilings, cozy seating, and entrance.
+          </p>
+        </div>
+
+        <!-- Filter buttons -->
+        <div class="flex flex-wrap gap-2 text-xs">
+          <button onclick="filterGallery('all')" class="gallery-tab active-tab bg-brand-accent text-brand-navy px-4 py-2 rounded-xl font-bold transition">All Photos</button>
+          <button onclick="filterGallery('bedrooms')" class="gallery-tab bg-slate-800 text-slate-300 hover:text-white px-4 py-2 rounded-xl font-medium transition">Rooms & Lighting</button>
+          <button onclick="filterGallery('seating')" class="gallery-tab bg-slate-800 text-slate-300 hover:text-white px-4 py-2 rounded-xl font-medium transition">Interiors & Seating</button>
+          <button onclick="filterGallery('exterior')" class="gallery-tab bg-slate-800 text-slate-300 hover:text-white px-4 py-2 rounded-xl font-medium transition">Entrance & Parking</button>
+        </div>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryContainer">
+        
+        <!-- Item 1: Warm Amber Cove Light & Maroon Headboard -->
+        <div class="gallery-item bedrooms group relative rounded-2xl overflow-hidden bg-slate-800 border border-white/10 aspect-[4/3] cursor-pointer shadow-lg" onclick="openLightbox('Executive Double Room - Ambient Amber Cove Ceiling & Velvet Wall', 'Warm amber hidden ceiling lighting paired with maroon back panel, double mattress, and mirror dressing table.', 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1000&q=80')">
+          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80" alt="Executive Room Warm Lighting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/700x500/1e293b/d4af37?text=Warm+Cove+Room';" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+            <span class="text-xs text-amber-300 font-semibold">Rooms & Lighting</span>
+            <h4 class="text-sm font-bold text-white">Amber Cove Ceiling & Maroon Velvet Headboard</h4>
+          </div>
+        </div>
+
+        <!-- Item 2: Modern Blue Ambient Bedroom (from Screenshot 1) -->
+        <div class="gallery-item bedrooms group relative rounded-2xl overflow-hidden bg-slate-800 border border-white/10 aspect-[4/3] cursor-pointer shadow-lg" onclick="openLightbox('Deluxe Room - Cool Blue LED Mood Lighting', 'Ambient blue backlighting behind headboard with navy bed runner and spacious room layout.', 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1000&q=80')">
+          <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=700&q=80" alt="Deluxe Room LED Lighting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/700x500/1e293b/38bdf8?text=Blue+LED+Room';" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+            <span class="text-xs text-sky-400 font-semibold">Mood Lighting</span>
+            <h4 class="text-sm font-bold text-white">Cool Blue LED Night Ambience</h4>
+          </div>
+        </div>
+
+        <!-- Item 3: Cozy Seating & Glass Table (from Screenshot 1 & 2) -->
+        <div class="gallery-item seating group relative rounded-2xl overflow-hidden bg-slate-800 border border-white/10 aspect-[4/3] cursor-pointer shadow-lg" onclick="openLightbox('In-Room Guest Living Space', 'Comfortable sofa seating with transparent glass coffee table for relaxed dining or tea.', 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=1000&q=80')">
+          <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=700&q=80" alt="Living Sofa & Coffee Table" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/700x500/1e293b/34d399?text=Living+Sofa';" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+            <span class="text-xs text-emerald-400 font-semibold">Living & Comfort</span>
+            <h4 class="text-sm font-bold text-white">Plush Velvet Sofa & Glass Coffee Table</h4>
+          </div>
+        </div>
+
+        <!-- Item 4: Emerald Velvet Headboard Room (from Screenshot 1) -->
+        <div class="gallery-item bedrooms group relative rounded-2xl overflow-hidden bg-slate-800 border border-white/10 aspect-[4/3] cursor-pointer shadow-lg" onclick="openLightbox('Emerald Green Accent Suite', 'Luxurious green wall paneling, reading lights, and en-suite clean bathroom.', 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1000&q=80')">
+          <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=80" alt="Emerald Green Accent Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/700x500/1e293b/10b981?text=Emerald+Suite';" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+            <span class="text-xs text-emerald-300 font-semibold">Suites</span>
+            <h4 class="text-sm font-bold text-white">Emerald Geometric Padded Headboard</h4>
+          </div>
+        </div>
+
+        <!-- Item 5: Hotel Entrance & Dedicated Parking Signboard (from Screenshot 4 & 5) -->
+        <div class="gallery-item exterior group relative rounded-2xl overflow-hidden bg-slate-800 border border-white/10 aspect-[4/3] cursor-pointer shadow-lg" onclick="openLightbox('Hotel Majestic Inn Entrance & Dedicated Parking', 'Red glow board signage at main entry with dedicated rear parking driveway for vehicles.', 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1000&q=80')">
+          <svg class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" viewBox="0 0 400 300">
+            <rect width="400" height="300" fill="#1e2530"/>
+            <rect x="40" y="40" width="320" height="260" fill="#0f172a"/>
+            <!-- Entrance Board matching Screenshot 5 -->
+            <rect x="90" y="55" width="220" height="55" rx="6" fill="#991b1b" stroke="#f87171" stroke-width="2"/>
+            <text x="200" y="82" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">HOTEL MAJESTIC INN</text>
+            <text x="200" y="98" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" fill="#fef08a" text-anchor="middle">24 HOURS • DIGDOH MIDC</text>
+            <!-- Parking sign on wall -->
+            <rect x="235" y="125" width="95" height="42" rx="4" fill="#ffffff" stroke="#ef4444" stroke-width="1.5"/>
+            <text x="282" y="142" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#ef4444" text-anchor="middle">HOTEL MAJESTIC</text>
+            <text x="282" y="156" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1e293b" text-anchor="middle">PARKING BACK SIDE</text>
+            <!-- Entrance stairs -->
+            <polygon points="120,280 220,280 200,160 140,160" fill="#475569"/>
+          </svg>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+            <span class="text-xs text-rose-400 font-semibold">Exterior & Arrival</span>
+            <h4 class="text-sm font-bold text-white">Main Entrance & Dedicated Back Parking</h4>
+          </div>
+        </div>
+
+        <!-- Item 6: En-Suite Washroom with Geyser (from Screenshot 2) -->
+        <div class="gallery-item seating group relative rounded-2xl overflow-hidden bg-slate-800 border border-white/10 aspect-[4/3] cursor-pointer shadow-lg" onclick="openLightbox('Hygienic Modern Bathroom with Geyser', 'Fitted with instant hot water geysers, clean ceramic tiles, western commode, and shower.', 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1000&q=80')">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=700&q=80" alt="Clean Bathroom with Geyser" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/700x500/1e293b/38bdf8?text=En-Suite+Bath';" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+            <span class="text-xs text-sky-400 font-semibold">Hygiene & Washroom</span>
+            <h4 class="text-sm font-bold text-white">Sparkling Washroom with Electric Geyser</h4>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="relative max-w-4xl w-full bg-slate-900 rounded-2xl border border-white/20 overflow-hidden shadow-2xl">
+      <button onclick="closeLightbox()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-rose-600 transition">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+      <div class="p-4 sm:p-8 flex flex-col items-center">
+        <div id="lightboxVisual" class="w-full h-72 sm:h-96 rounded-xl bg-slate-800 flex items-center justify-center overflow-hidden mb-4 border border-white/10">
+          <!-- Dynamic visual content injected here -->
+        </div>
+        <div class="text-left w-full">
+          <h3 id="lightboxTitle" class="text-xl font-bold text-white font-display"></h3>
+          <p id="lightboxDesc" class="text-sm text-slate-300 mt-1"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOCATION & VICINITY SECTION -->
+  <section id="location" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left Column: Location Highlights -->
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-brand-accent text-xs font-bold tracking-widest uppercase inline-block">Strategic Location</span>
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-brand-navy">
+            Located in MIDC Digdoh, Hingna Road, Nagpur
+          </h2>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Rated <strong class="text-slate-800">4.3 / 5 for location</strong> on Google Maps by visiting travelers. Hotel Majestic Inn offers unbeatable convenience for professionals visiting Hingna MIDC industries, engineering campuses, and medical colleges.
+          </p>
+
+          <!-- Nearby Landmarks List -->
+          <div class="space-y-3 pt-2">
+            <div class="flex items-center justify-between p-3.5 bg-white rounded-xl border border-slate-200/80 shadow-sm">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-industry"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-slate-800">MIDC Hingna Industrial Area</h4>
+                  <p class="text-[11px] text-slate-500">Major Manufacturing & Corporate Plants</p>
+                </div>
+              </div>
+              <span class="text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-md">Immediate</span>
+            </div>
+
+            <div class="flex items-center justify-between p-3.5 bg-white rounded-xl border border-slate-200/80 shadow-sm">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-hospital"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-slate-800">Lata Mangeshkar Hospital & NKPSIMS</h4>
+                  <p class="text-[11px] text-slate-500">Digdoh Hills Medical Complex</p>
+                </div>
+              </div>
+              <span class="text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-md">5 mins</span>
+            </div>
+
+            <div class="flex items-center justify-between p-3.5 bg-white rounded-xl border border-slate-200/80 shadow-sm">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-train-subway"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-slate-800">Lokmanya Nagar Metro Station</h4>
+                  <p class="text-[11px] text-slate-500">Nagpur Metro Aqua Line Connectivity</p>
+                </div>
+              </div>
+              <span class="text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-md">8 mins</span>
+            </div>
+
+            <div class="flex items-center justify-between p-3.5 bg-white rounded-xl border border-slate-200/80 shadow-sm">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-plane-departure"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-slate-800">Dr. Babasaheb Ambedkar Intl. Airport</h4>
+                  <p class="text-[11px] text-slate-500">Airport & MIHAN SEZ Corridor</p>
+                </div>
+              </div>
+              <span class="text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-md">20 mins</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <a href="https://maps.google.com/?q=Hotel+Majestic+Inn+Digdoh+Nagpur" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-brand-navy hover:text-brand-accent transition">
+              <i class="fa-solid fa-diamond-turn-right text-brand-accent"></i>
+              <span>Open in Google Maps Application &rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Styled Map Simulation (matching screenshot coordinates & surroundings) -->
+        <div class="lg:col-span-7">
+          <div class="bg-slate-900 rounded-3xl p-4 sm:p-6 text-white border border-slate-800 shadow-xl cove-glow">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-500 animate-pulse"></span>
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Google Maps Vicinity (Nagpur MIDC)</span>
+              </div>
+              <span class="text-xs bg-slate-800 text-amber-300 px-2.5 py-1 rounded-lg border border-amber-400/30">
+                ₹1,310 Base
+              </span>
+            </div>
+
+            <!-- Vector Map Schematic (Dark map styling matching Screenshot 4) -->
+            <div class="relative h-80 sm:h-96 w-full rounded-2xl overflow-hidden bg-[#1e2530] border border-slate-700">
+              <svg class="w-full h-full" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                <!-- Background dark map -->
+                <rect width="600" height="400" fill="#1b222c"/>
+
+                <!-- Grid blocks -->
+                <rect x="20" y="30" width="140" height="90" fill="#222b37" rx="4"/>
+                <rect x="180" y="40" width="120" height="80" fill="#222b37" rx="4"/>
+                <rect x="30" y="240" width="180" height="120" fill="#222b37" rx="4"/>
+                <rect x="340" y="180" width="220" height="180" fill="#222b37" rx="4"/>
+
+                <!-- Main Hingna Road (Highway line from screenshot 4) -->
+                <path d="M 0,80 Q 250,150 480,240 T 600,280" fill="none" stroke="#475569" stroke-width="26" stroke-linecap="round"/>
+                <path d="M 0,80 Q 250,150 480,240 T 600,280" fill="none" stroke="#64748b" stroke-width="18" stroke-linecap="round"/>
+                <path d="M 0,80 Q 250,150 480,240 T 600,280" fill="none" stroke="#f1f5f9" stroke-width="2" stroke-dasharray="10 10"/>
+
+                <!-- Hingna Road label -->
+                <text x="500" y="235" font-family="sans-serif" font-size="11" font-weight="bold" fill="#cbd5e1" transform="rotate(18, 500, 235)">Hingna Rd</text>
+                <text x="140" y="270" font-family="sans-serif" font-size="14" font-weight="bold" fill="#94a3b8">Digdoh (डिगडोह)</text>
+                <text x="380" y="270" font-family="sans-serif" font-size="12" font-weight="bold" fill="#64748b">RAJENDRA NAGAR</text>
+
+                <!-- Nearby Landmarks Markers -->
+                <circle cx="120" cy="180" r="4" fill="#ef4444"/>
+                <text x="130" y="184" font-family="sans-serif" font-size="10" fill="#cbd5e1">Hotel Cafe 8</text>
+
+                <circle cx="480" cy="140" r="4" fill="#ef4444"/>
+                <text x="490" y="144" font-family="sans-serif" font-size="10" fill="#cbd5e1">Hotel Ace Inn</text>
+
+                <!-- Hotel Majestic Inn Pin (Exact from Screenshot 4 & 5) -->
+                <g transform="translate(380, 195)">
+                  <!-- Pulse effect -->
+                  <circle cx="0" cy="0" r="24" fill="#ef4444" opacity="0.3">
+                    <animate attributeName="r" values="10;30;10" dur="2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <!-- Price Tag Badge (like Google Maps) -->
+                  <rect x="-35" y="-36" width="70" height="22" rx="6" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+                  <text x="0" y="-21" font-family="sans-serif" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">₹1,310</text>
+                  <!-- Pin head -->
+                  <circle cx="0" cy="0" r="7" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
+                </g>
+
+                <!-- Detailed callout card -->
+                <rect x="220" y="125" width="180" height="52" rx="8" fill="#0f172a" stroke="#d4af37" stroke-width="1.5" opacity="0.95"/>
+                <text x="232" y="145" font-family="'Cinzel', serif" font-size="12" font-weight="bold" fill="#d4af37">HOTEL MAJESTIC INN</text>
+                <text x="232" y="162" font-family="sans-serif" font-size="9.5" fill="#f8fafc">★ 3.9 (16) • Digdoh MIDC</text>
+              </svg>
+
+              <!-- Map Overlay Button -->
+              <div class="absolute bottom-3 right-3">
+                <a href="https://www.google.com/maps/place/Hotel+Majestic+Inn/@21.1182113,79.0156326,17z" target="_blank" rel="noopener noreferrer" class="bg-white/90 hover:bg-white text-slate-900 px-3 py-1.5 rounded-lg text-xs font-bold shadow-md flex items-center gap-1.5 transition">
+                  <i class="fa-solid fa-location-arrow text-rose-600"></i> Get Directions
+                </a>
+              </div>
+            </div>
+
+            <div class="mt-4 flex flex-wrap items-center justify-between text-xs text-slate-400 gap-2">
+              <span>Address: Hotel Majestic Inn, MIDC Digdoh, Hingna Road, Nagpur, Maharashtra 440016</span>
+              <span class="text-brand-gold font-medium">GPS: 21.1182° N, 79.0156° E</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- REVIEWS & RATINGS -->
+  <section id="reviews" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-gradient-to-br from-brand-navy via-slate-900 to-brand-dark rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
+        <!-- Background light effect -->
+        <div class="absolute top-0 right-0 w-80 h-80 bg-brand-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="grid lg:grid-cols-12 gap-8 items-center relative z-10">
+          
+          <!-- Rating Summary (Verified from Screenshot 4 & 5) -->
+          <div class="lg:col-span-4 text-center lg:text-left border-b lg:border-b-0 lg:border-r border-white/10 pb-6 lg:pb-0 lg:pr-8">
+            <div class="inline-block bg-white/10 px-3 py-1 rounded-full text-xs font-semibold text-amber-300 mb-3">
+              Google Maps Verified Score
+            </div>
+            <div class="text-5xl sm:text-6xl font-display font-bold text-white mb-2">
+              3.9 <span class="text-2xl text-slate-400 font-sans font-normal">/ 5</span>
+            </div>
+            <div class="flex items-center justify-center lg:justify-start gap-1 text-amber-400 text-lg mb-2">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star-half-stroke"></i>
+            </div>
+            <p class="text-xs text-slate-300">Based on 16+ verified travelers & corporate visitor ratings</p>
+
+            <div class="mt-6 pt-6 border-t border-white/10 space-y-2 text-xs">
+              <div class="flex justify-between text-slate-300">
+                <span>Location Convenience</span>
+                <span class="text-amber-400 font-bold">4.3 / 5</span>
+              </div>
+              <div class="flex justify-between text-slate-300">
+                <span>Cleanliness & AC Cooling</span>
+                <span class="text-amber-400 font-bold">4.1 / 5</span>
+              </div>
+              <div class="flex justify-between text-slate-300">
+                <span>Value For Money (from ₹1,310)</span>
+                <span class="text-amber-400 font-bold">4.5 / 5</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review Quotes -->
+          <div class="lg:col-span-8 grid sm:grid-cols-2 gap-4">
+            
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 backdrop-blur-sm">
+              <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4">
+                "Very good budget hotel in MIDC Hingna area. The cove ceiling lights give the bedroom a nice cozy touch. Hot geyser worked instantly and AC was cooling perfectly. Great staff."
+              </p>
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-amber-400 text-brand-navy font-bold text-xs flex items-center justify-center">
+                  RK
+                </div>
+                <div>
+                  <h5 class="text-xs font-bold text-white">Rahul K.</h5>
+                  <span class="text-[10px] text-slate-400">Business Traveler (MIDC Industrial)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-5 backdrop-blur-sm">
+              <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4">
+                "Booked for 2 days while visiting Lata Mangeshkar Hospital nearby. Private parking at the back side was safe for my car. Extremely polite receptionist available round the clock."
+              </p>
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-blue-400 text-brand-navy font-bold text-xs flex items-center justify-center">
+                  SP
+                </div>
+                <div>
+                  <h5 class="text-xs font-bold text-white">Sanjay Patil</h5>
+                  <span class="text-[10px] text-slate-400">Family Guest</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- QUICK CONTACT & QUERY SECTION -->
+  <section class="py-16 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-3 gap-8">
+        
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-phone"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-sm">Direct Reservation Hotline</h4>
+            <p class="text-xs text-slate-500 mb-2">Speak directly with our front manager for instant tariff & group rates.</p>
+            <a href="tel:+919158000000" class="text-sm font-bold text-brand-navy hover:text-brand-accent transition">
+              +91 91580 00000 / 0712-280000
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-brands fa-whatsapp"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-sm">WhatsApp Chat Booking</h4>
+            <p class="text-xs text-slate-500 mb-2">Send your check-in dates for fast room availability & photos on chat.</p>
+            <a href="https://wa.me/919158000000?text=Hi%2C%20I%20want%20to%20book%20a%20room%20at%20Hotel%20Majestic%20Inn" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-emerald-600 hover:text-emerald-700 transition">
+              Chat on WhatsApp &rarr;
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 text-sm">Location Address</h4>
+            <p class="text-xs text-slate-500 mb-2">MIDC Industrial Area, Digdoh, Hingna Road, Nagpur, MH 440016.</p>
+            <span class="text-xs font-semibold text-slate-700">Open 24 Hours Daily</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-navy text-slate-400 pt-16 pb-24 sm:pb-12 border-t border-slate-800 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 pb-12 border-b border-slate-800">
+        
+        <!-- Brand Info -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-accent to-amber-600 flex items-center justify-center text-brand-navy font-bold text-xl shadow">
+              <i class="fa-solid fa-hotel"></i>
+            </div>
+            <div>
+              <div class="font-display font-bold text-lg text-white uppercase tracking-wider">
+                Hotel Majestic <span class="text-brand-accent">Inn</span>
+              </div>
+              <div class="text-[10px] text-slate-400">होटल मैजेस्टिक इन • MIDC Nagpur</div>
+            </div>
+          </div>
+          <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
+            Premium budget accommodation in MIDC Digdoh on Hingna Road. Offering ambient cove air-conditioned rooms, 24x7 desk, free Wi-Fi, and dedicated parking.
+          </p>
+          <div class="text-amber-300 font-medium">
+            Starting from ₹1,310 / night
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Quick Navigation</h4>
+          <ul class="space-y-2">
+            <li><a href="#home" class="hover:text-brand-gold transition">Home</a></li>
+            <li><a href="#about" class="hover:text-brand-gold transition">About Hotel</a></li>
+            <li><a href="#rooms" class="hover:text-brand-gold transition">Rooms & Pricing</a></li>
+            <li><a href="#amenities" class="hover:text-brand-gold transition">Facilities</a></li>
+            <li><a href="#gallery" class="hover:text-brand-gold transition">Photo Gallery</a></li>
+          </ul>
+        </div>
+
+        <!-- Room Types -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Accommodations</h4>
+          <ul class="space-y-2">
+            <li><a href="#rooms" class="hover:text-brand-gold transition">Deluxe AC Room (₹1,310)</a></li>
+            <li><a href="#rooms" class="hover:text-brand-gold transition">Executive Double Room (₹1,699)</a></li>
+            <li><a href="#rooms" class="hover:text-brand-gold transition">Family Suite (₹2,199)</a></li>
+            <li><a href="#rooms" class="hover:text-brand-gold transition">Corporate Long-Stays</a></li>
+          </ul>
+        </div>
+
+        <!-- Hotel Policies -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Hotel Policies</h4>
+          <ul class="space-y-1.5 text-[11px] text-slate-400">
+            <li>• Check-in: 12:00 PM</li>
+            <li>• Check-out: 11:00 AM</li>
+            <li>• 24-Hour Front Reception</li>
+            <li>• Valid Govt. Photo ID required</li>
+            <li>• Dedicated parking on rear side</li>
+            <li>• Couples & Families welcome</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-4">
+        <div>
+          &copy; <span id="yearSpan"></span> Hotel Majestic Inn (होटल मैजेस्टिक इन). All Rights Reserved.
+        </div>
+        <div class="flex items-center space-x-4">
+          <span>MIDC Hingna Road, Digdoh, Nagpur</span>
+          <span>•</span>
+          <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-brand-accent hover:underline">Back to top &uarr;</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING QUICK CALL & WHATSAPP BUTTONS -->
+  <div class="fixed bottom-5 right-5 z-40 flex flex-col gap-3">
+    <!-- WhatsApp Floating Action -->
+    <a href="https://wa.me/919158000000?text=Hi%20Hotel%20Majestic%20Inn%2C%20I%20would%20like%20to%20inquire%20about%20room%20availability" target="_blank" rel="noopener noreferrer" class="w-13 h-13 sm:w-14 sm:h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center text-2xl shadow-xl hover:scale-105 transition-transform duration-200 border-2 border-white" title="Chat on WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    
+    <!-- Call Floating Action -->
+    <a href="tel:+919158000000" class="w-13 h-13 sm:w-14 sm:h-14 bg-brand-navy hover:bg-slate-900 text-brand-gold rounded-full flex items-center justify-center text-xl shadow-xl hover:scale-105 transition-transform duration-200 border-2 border-brand-accent" title="Call Hotel">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- BOOKING ENGINE MODAL -->
+  <div id="bookingModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-200 my-8">
+      
+      <!-- Modal Header -->
+      <div class="bg-brand-navy p-6 text-white flex items-center justify-between">
+        <div>
+          <span class="text-brand-gold text-[10px] font-bold uppercase tracking-widest">Instant Reservation</span>
+          <h3 class="font-display font-bold text-xl text-white">Hotel Majestic Inn</h3>
+          <p class="text-xs text-slate-300">MIDC Digdoh, Hingna Road, Nagpur</p>
+        </div>
+        <button onclick="closeBookingModal()" class="w-9 h-9 rounded-full bg-white/10 text-slate-300 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Booking Form / Content -->
+      <div id="bookingFormContainer" class="p-6 space-y-4">
+        
+        <!-- Room Category Pick -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Select Room Category</label>
+          <select id="modalRoomSelect" onchange="calculatePrice()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-accent">
+            <option value="1310" data-name="Deluxe AC Room">Deluxe AC Room - ₹1,310/night</option>
+            <option value="1699" data-name="Executive Double Room">Executive Double Room - ₹1,699/night</option>
+            <option value="2199" data-name="Family Suite">Family Suite - ₹2,199/night</option>
+          </select>
+        </div>
+
+        <!-- Dates Grid -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Check-in</label>
+            <input type="date" id="modalCheckIn" onchange="calculatePrice()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-accent">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Check-out</label>
+            <input type="date" id="modalCheckOut" onchange="calculatePrice()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-accent">
+          </div>
+        </div>
+
+        <!-- Guest Details -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Name</label>
+            <input type="text" id="guestName" placeholder="e.g. Ramesh Sharma" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-accent">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Phone Number</label>
+            <input type="tel" id="guestPhone" placeholder="10-digit mobile" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-accent">
+          </div>
+        </div>
+
+        <!-- Price Breakdown Box -->
+        <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 space-y-2 text-xs">
+          <div class="flex justify-between text-slate-600">
+            <span>Room Tariff (<span id="calcNights">1</span> night):</span>
+            <span class="font-semibold text-slate-800" id="calcBasePrice">₹1,310</span>
+          </div>
+          <div class="flex justify-between text-slate-600">
+            <span>Estimated Taxes & Service (12% GST):</span>
+            <span class="font-semibold text-slate-800" id="calcTaxes">₹157</span>
+          </div>
+          <div class="pt-2 border-t border-slate-200 flex justify-between text-sm font-bold text-brand-navy">
+            <span>Total Payable at Check-in:</span>
+            <span class="text-base text-brand-navy font-bold" id="calcTotal">₹1,467</span>
+          </div>
+          <p class="text-[10px] text-emerald-600 flex items-center gap-1 pt-1">
+            <i class="fa-solid fa-lock text-[9px]"></i> No advance payment required • Pay directly at hotel counter
+          </p>
+        </div>
+
+        <!-- Confirm CTA -->
+        <button onclick="confirmBooking()" class="w-full bg-brand-navy hover:bg-slate-900 text-brand-gold py-3.5 rounded-xl font-bold text-sm tracking-wide transition shadow-lg flex items-center justify-center gap-2 border border-brand-accent/40">
+          <i class="fa-solid fa-circle-check"></i>
+          <span>Confirm Reservation & Generate Slip</span>
+        </button>
+
+      </div>
+
+      <!-- Success Receipt State (Shown after reservation) -->
+      <div id="bookingSuccessContainer" class="p-6 hidden text-center space-y-4">
+        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-3xl">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold font-display text-slate-900">Booking Confirmed!</h3>
+          <p class="text-xs text-slate-500 mt-1">Your reservation at Hotel Majestic Inn has been recorded.</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-left text-xs space-y-2 font-mono">
+          <div class="flex justify-between"><span class="text-slate-500">Booking ID:</span> <span class="font-bold text-slate-800" id="receiptId">MAJ-9281</span></div>
+          <div class="flex justify-between"><span class="text-slate-500">Guest:</span> <span class="font-bold text-slate-800" id="receiptGuest">Ramesh</span></div>
+          <div class="flex justify-between"><span class="text-slate-500">Room:</span> <span class="font-bold text-slate-800" id="receiptRoom">Deluxe AC</span></div>
+          <div class="flex justify-between"><span class="text-slate-500">Stay:</span> <span class="font-bold text-slate-800" id="receiptDates">Oct 15 - Oct 16</span></div>
+          <div class="flex justify-between border-t border-slate-200 pt-2"><span class="text-slate-500">Payable at Hotel:</span> <span class="font-bold text-emerald-700 text-sm" id="receiptTotal">₹1,467</span></div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-2">
+          <button onclick="sendBookingToWhatsApp()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shadow">
+            <i class="fa-brands fa-whatsapp text-sm"></i> Send to Hotel WhatsApp
+          </button>
+          <button onclick="window.print()" class="flex-1 bg-slate-100 text-slate-700 py-2.5 rounded-xl text-xs font-bold hover:bg-slate-200 transition">
+            <i class="fa-solid fa-print mr-1"></i> Print Slip
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HOTEL OWNER PITCH & ROI MODAL (FOR SAMPLE SHARING) -->
+  <div id="pitchModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-200 my-8">
+      <div class="bg-brand-navy p-6 text-white flex items-center justify-between">
+        <div>
+          <span class="text-amber-400 text-[10px] font-bold uppercase tracking-widest">Website Proposal For Owners</span>
+          <h3 class="font-display font-bold text-xl text-white">Why Hotel Majestic Inn Needs This Direct Website</h3>
+          <p class="text-xs text-slate-300">Convert Google Maps & Local searchers directly with zero commission</p>
+        </div>
+        <button onclick="closePitchModal()" class="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-rose-600 transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-6 text-xs sm:text-sm text-slate-700 max-h-[75vh] overflow-y-auto">
+        
+        <!-- Comparison Card -->
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="bg-rose-50 border border-rose-200 rounded-2xl p-4">
+            <div class="flex items-center gap-2 text-rose-700 font-bold mb-2">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span>Current OTA Channels (Expedia/Hotels.com)</span>
+            </div>
+            <ul class="space-y-1.5 text-xs text-rose-900">
+              <li>• Charges <strong>18% – 22% commission</strong> per booked room</li>
+              <li>• You lose ₹235 - ₹330 on every ₹1,310 room</li>
+              <li>• Customer data belongs to the booking portal</li>
+              <li>• Delayed payouts and cancellation disputes</li>
+            </ul>
+          </div>
+
+          <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4">
+            <div class="flex items-center gap-2 text-emerald-700 font-bold mb-2">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>This Official Direct Website</span>
+            </div>
+            <ul class="space-y-1.5 text-xs text-emerald-900">
+              <li>• <strong>0% Commission</strong> – 100% money goes to hotel</li>
+              <li>• Instant WhatsApp inquiries directly to hotel counter</li>
+              <li>• Directly connected to your Google Maps listing ("Add Website")</li>
+              <li>• Complete control over tariffs, deals & corporate bookings</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Numbers simulation -->
+        <div class="bg-slate-900 text-white p-5 rounded-2xl">
+          <h4 class="font-bold text-amber-400 text-sm mb-1">Estimated Annual Savings for Hotel Majestic Inn:</h4>
+          <p class="text-xs text-slate-300 mb-3">Assuming 10 direct room bookings/day instead of OTAs:</p>
+          <div class="text-2xl sm:text-3xl font-display font-bold text-emerald-400">
+            ₹8,50,000+ saved / year in commissions
+          </div>
+        </div>
+
+        <!-- Features included in sample -->
+        <div>
+          <h4 class="font-bold text-slate-900 text-sm mb-2">Features Pre-Built in this Demo:</h4>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Fast mobile loading</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Direct WhatsApp Lead Gen</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Google Maps Pin integration</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Printable check-in slip</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Real photo showcase</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-600"></i> Multi-tier Room pricing</div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-200 flex flex-col sm:flex-row gap-3">
+          <button onclick="copySampleLink(); closePitchModal();" class="flex-1 bg-brand-navy hover:bg-slate-900 text-brand-gold py-3 rounded-xl font-bold text-center text-xs transition">
+            <i class="fa-solid fa-share-nodes mr-1.5"></i> Copy Link to Send to Hotel Owner
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLICATION SCRIPTS -->
+  <script>
+    // Set dynamic current year in footer
+    document.getElementById('yearSpan').textContent = new Date().getFullYear();
+
+    // Custom Toast Notification System (Never uses alert())
+    function showToast(message, isSuccess = true) {
+      const toast = document.getElementById('toastNotification');
+      const toastMsg = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+
+      toastMsg.textContent = message;
+      if (isSuccess) {
+        toastIcon.className = "fa-solid fa-circle-check text-emerald-400 text-base";
+      } else {
+        toastIcon.className = "fa-solid fa-triangle-exclamation text-amber-400 text-base";
+      }
+
+      toast.classList.remove('hidden');
+      toast.classList.add('toast-animate');
+
+      setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('toast-animate');
+      }, 3500);
+    }
+
+    // Copy Sample Link Function (Safe fallback for iframe preview contexts)
+    function copySampleLink() {
+      const dummyInput = document.createElement('input');
+      dummyInput.value = window.location.href;
+      document.body.appendChild(dummyInput);
+      dummyInput.select();
+      try {
+        document.execCommand('copy');
+        showToast("Sample preview link copied to clipboard! You can now send it to the client.", true);
+      } catch (err) {
+        showToast("Please copy this URL from your browser address bar.", false);
+      }
+      document.body.removeChild(dummyInput);
+    }
+
+    // Proposal Pitch Modal Controls
+    function openPitchModal() {
+      const modal = document.getElementById('pitchModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closePitchModal() {
+      const modal = document.getElementById('pitchModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Default Date Initializer (Today & Tomorrow)
+    function setupDefaultDates() {
+      const today = new Date();
+      const tomorrow = new Date();
+      tomorrow.setDate(today.getDate() + 1);
+
+      const toDateString = (d) => d.toISOString().split('T')[0];
+
+      const checkInInput = document.getElementById('heroCheckIn');
+      const checkOutInput = document.getElementById('heroCheckOut');
+      const modalIn = document.getElementById('modalCheckIn');
+      const modalOut = document.getElementById('modalCheckOut');
+
+      const todayStr = toDateString(today);
+      const tomorrowStr = toDateString(tomorrow);
+
+      if (checkInInput) {
+        checkInInput.value = todayStr;
+        checkInInput.min = todayStr;
+      }
+      if (checkOutInput) {
+        checkOutInput.value = tomorrowStr;
+        checkOutInput.min = tomorrowStr;
+      }
+      if (modalIn) {
+        modalIn.value = todayStr;
+        modalIn.min = todayStr;
+      }
+      if (modalOut) {
+        modalOut.value = tomorrowStr;
+        modalOut.min = tomorrowStr;
+      }
+    }
+
+    setupDefaultDates();
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Quick Search from Hero
+    function handleQuickSearch(e) {
+      e.preventDefault();
+      const roomType = document.getElementById('heroRoomType').value;
+      let price = 1310;
+      if (roomType.includes('Executive')) price = 1699;
+      if (roomType.includes('Family')) price = 2199;
+
+      openBookingModal(roomType, price);
+    }
+
+    // Modal Control & Cost Calculation
+    function openBookingModal(roomName, price) {
+      const modal = document.getElementById('bookingModal');
+      const select = document.getElementById('modalRoomSelect');
+      
+      document.getElementById('bookingFormContainer').classList.remove('hidden');
+      document.getElementById('bookingSuccessContainer').classList.add('hidden');
+
+      // Set corresponding select option
+      if (roomName) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].getAttribute('data-name').toLowerCase().includes(roomName.toLowerCase().split(' ')[0])) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
+      }
+
+      calculatePrice();
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeBookingModal() {
+      const modal = document.getElementById('bookingModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function calculatePrice() {
+      const select = document.getElementById('modalRoomSelect');
+      const basePerNight = parseInt(select.value, 10);
+      
+      const checkInVal = document.getElementById('modalCheckIn').value;
+      const checkOutVal = document.getElementById('modalCheckOut').value;
+      
+      let nights = 1;
+      if (checkInVal && checkOutVal) {
+        const d1 = new Date(checkInVal);
+        const d2 = new Date(checkOutVal);
+        const diffTime = d2 - d1;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        nights = diffDays > 0 ? diffDays : 1;
+      }
+
+      const totalBase = basePerNight * nights;
+      const gst = Math.round(totalBase * 0.12);
+      const grandTotal = totalBase + gst;
+
+      document.getElementById('calcNights').textContent = nights;
+      document.getElementById('calcBasePrice').textContent = `₹${totalBase.toLocaleString('en-IN')}`;
+      document.getElementById('calcTaxes').textContent = `₹${gst.toLocaleString('en-IN')}`;
+      document.getElementById('calcTotal').textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
+    }
+
+    function confirmBooking() {
+      const name = document.getElementById('guestName').value.trim();
+      const phone = document.getElementById('guestPhone').value.trim();
+
+      if (!name || !phone) {
+        showToast('Please enter your full name and phone number to reserve.', false);
+        return;
+      }
+
+      const select = document.getElementById('modalRoomSelect');
+      const roomName = select.options[select.selectedIndex].getAttribute('data-name');
+      const total = document.getElementById('calcTotal').textContent;
+      const inDate = document.getElementById('modalCheckIn').value;
+      const outDate = document.getElementById('modalCheckOut').value;
+
+      // Populate Receipt
+      const randomId = 'MAJ-' + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('receiptId').textContent = randomId;
+      document.getElementById('receiptGuest').textContent = name;
+      document.getElementById('receiptRoom').textContent = roomName;
+      document.getElementById('receiptDates').textContent = `${inDate} to ${outDate}`;
+      document.getElementById('receiptTotal').textContent = total;
+
+      document.getElementById('bookingFormContainer').classList.add('hidden');
+      document.getElementById('bookingSuccessContainer').classList.remove('hidden');
+      showToast('Reservation generated successfully!', true);
+    }
+
+    function sendBookingToWhatsApp() {
+      const id = document.getElementById('receiptId').textContent;
+      const guest = document.getElementById('receiptGuest').textContent;
+      const room = document.getElementById('receiptRoom').textContent;
+      const dates = document.getElementById('receiptDates').textContent;
+      const total = document.getElementById('receiptTotal').textContent;
+
+      const message = `Hello Hotel Majestic Inn, I want to confirm my reservation.%0A*Booking ID:* ${id}%0A*Guest Name:* ${encodeURIComponent(guest)}%0A*Room Type:* ${encodeURIComponent(room)}%0A*Dates:* ${encodeURIComponent(dates)}%0A*Total Payable:* ${encodeURIComponent(total)}%0APlease confirm my booking.`;
+      const url = `https://wa.me/919158000000?text=${message}`;
+      window.open(url, '_blank');
+    }
+
+    // Gallery Filter Logic
+    function filterGallery(category) {
+      const tabs = document.querySelectorAll('.gallery-tab');
+      tabs.forEach(t => {
+        t.classList.remove('bg-brand-accent', 'text-brand-navy', 'active-tab');
+        t.classList.add('bg-slate-800', 'text-slate-300');
+      });
+
+      // Highlight target tab
+      event.target.classList.remove('bg-slate-800', 'text-slate-300');
+      event.target.classList.add('bg-brand-accent', 'text-brand-navy', 'active-tab');
+
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Lightbox Logic
+    function openLightbox(title, desc, imgSrc) {
+      const modal = document.getElementById('lightboxModal');
+      document.getElementById('lightboxTitle').textContent = title;
+      document.getElementById('lightboxDesc').textContent = desc;
+
+      const visualContainer = document.getElementById('lightboxVisual');
+      if (imgSrc) {
+        visualContainer.innerHTML = `<img src="${imgSrc}" alt="${title}" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; this.src='https://placehold.co/900x600/1e293b/d4af37?text=Hotel+Majestic+Inn';" />`;
+      } else {
+        visualContainer.innerHTML = `
+          <div class="text-center p-6 text-slate-300">
+            <i class="fa-solid fa-camera text-4xl text-brand-gold mb-3"></i>
+            <h4 class="font-bold text-white text-lg">${title}</h4>
+            <p class="text-xs text-slate-400 mt-2 max-w-md mx-auto">High-resolution preview representative of Hotel Majestic Inn, MIDC Digdoh, Hingna Road, Nagpur.</p>
+          </div>
+        `;
+      }
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightboxModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Close modals on Esc key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeBookingModal();
+        closeLightbox();
+        closePitchModal();
+      }
+    });
+  </script>
+</body>
+</html>
